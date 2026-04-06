@@ -1,0 +1,33 @@
+# =========================
+# Sistema Operativo (Basura invisible)
+# =========================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# =========================
+# Editores de Código
+# =========================
+.vscode/
+.idea/
+*.swp
+
+# =========================
+# Archivos de Registro (Logs)
+# =========================
+*.log
+npm-debug.log*
+
+# =========================
+# Dependencias (Carpetas gigantes)
+# =========================
+node_modules/
+dist/
+build/
+
+# =========================
+# Archivos de Entorno y Secretos (¡MUY IMPORTANTE!)
+# =========================
+.env
+.env.local
+.env.*

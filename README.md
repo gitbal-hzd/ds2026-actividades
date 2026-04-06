@@ -1,1 +1,3 @@
-# ds2026-actividades
+# Nombre: Martinez Baltazar
+# Legajo: 33242
+# Comisión: S33
