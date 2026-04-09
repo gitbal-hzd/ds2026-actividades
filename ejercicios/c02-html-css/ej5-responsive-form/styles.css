@@ -1,0 +1,113 @@
+/* RESET GLOBAL */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+:root {
+ 
+    --color-fondo-general: #f4f7f6;
+    --color-menu: #d6dee6;
+    --color-titulo-texto: rgb(18, 75, 110);
+    --color-titulo-fondo: rgba(0, 217, 255, 0.15); 
+    --color-texto: rgb(79, 64, 64); 
+    
+  
+    --fuente-titulos: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    --fuente-texto: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    
+
+    --radio-bordes: 8px;
+    --sombra-cajas: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+body {
+    font-family: var(--fuente-texto);
+    color: var(--color-texto);
+    background-color: var(--color-fondo-general);
+    padding: 20px;
+    line-height: 1.6; 
+}
+
+h1:hover {
+    transform: scale(1.05); 
+    color: black; 
+}
+
+h1, h2, h3 {
+    font-family: var(--fuente-titulos);
+    color: var(--color-titulo-texto);
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+
+.titulos {
+    background-color: var(--color-titulo-fondo);
+    padding: 20px;
+    margin-bottom: 20px;
+    font-size: 30px;
+    border-radius: var(--radio-bordes);
+    box-shadow: var(--sombra-cajas);
+}
+
+p {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+
+nav ul {
+    background-color: var(--color-menu);
+    padding: 5px;
+    margin-bottom: 30px;
+    border-radius: var(--radio-bordes);
+    box-shadow: var(--sombra-cajas);
+    
+   
+    display: flex;
+    justify-content: center;
+    gap: 200px;
+    list-style: none; 
+
+}
+
+nav a {
+    text-decoration: none; 
+    color: var(--color-texto);
+    font-weight: bold;
+    font-size: 18px;
+}
+
+
+img {
+    display: block; 
+    margin: 0 auto; 
+    margin-bottom: 20px;
+    
+    border-radius: var(--radio-bordes);
+    box-shadow: var(--sombra-cajas);
+    max-width: 100%; 
+}
+
+
+/* Lo que esté acá adentro se aplica si la pantalla mide 600px o menos */
+@media (max-width: 600px) {
+    nav ul {
+        flex-direction: column; 
+        gap: 15px;
+    }
+    
+    .titulos {
+        font-size: 24px; 
+        padding: 15px;
+    }
+    
+    body {
+        padding: 10px; 
+    }
+}
