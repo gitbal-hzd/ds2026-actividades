@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 3 - ABM Completo</title>
+</head>
+<body>
+    <h1>Gestión de Libros</h1>
+
+    <section>
+        <h3>Cargar Nuevo Libro</h3>
+        <input type="text" id="titulo" placeholder="Título">
+        <input type="text" id="autor" placeholder="Autor">
+        <input type="number" id="precio" placeholder="Precio">
+        <label> Disponible: <input type="checkbox" id="disponible" checked> </label>
+        <button id="btnAgregar">Agregar al Catálogo</button>
+        <div id="errorForm" style="color: red;"></div> </section>
+
+    <hr>
+
+    <section>
+        <input type="text" id="filtroAutor" placeholder="Filtrar por autor...">
+        <button id="filtrar">Filtrar</button>
+        <button id="mostrarDisponibles">Solo disponibles</button>
+        <button id="mostrarTodos">Ver todos</button>
+    </section>
+
+    <p id="stats"></p>
+    <ul id="listado"></ul>
+
+    <script src="app.js"></script>
+</body>
+</html>
