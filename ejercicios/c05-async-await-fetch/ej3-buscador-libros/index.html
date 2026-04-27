@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Buscador de Libros Open Library</title>
+    <style>
+        .tarjeta { border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 8px; }
+        #error { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Buscador de Libros</h1>
+    
+    <input type="text" id="busqueda" placeholder="Ej: Rayuela, Borges...">
+    <button id="btnBuscar">Buscar</button>
+    
+    <div id="error"></div>
+    <div id="resultados"></div>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
