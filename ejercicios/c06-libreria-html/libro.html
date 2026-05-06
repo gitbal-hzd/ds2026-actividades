@@ -12,29 +12,51 @@
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
   <div class="container">
     <a class="navbar-brand" href="index.html">📚 Librería</a>
-    
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
-    
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <a class="nav-link active" href="index.html">Inicio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="catalogo.html">Catálogo</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="contacto.html">Contacto</a>
-        </li>
+        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="catalogo.html">Catálogo</a></li>
+        <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
       </ul>
     </div>
   </div>
 </nav>
-    <div class="container mt-5">
-        <h1>Detalle del Libro</h1>
+
+<main class="container my-5">
+    <div class="row align-items-center">
+        <div class="col-md-5 mb-4 mb-md-0 text-center">
+            <img src="./9789507544118.jpg" 
+                 class="img-fluid rounded shadow-lg w-100" 
+                 alt="Portada del libro 108"
+                 style="max-height: 500px; object-fit: contain;">
+        </div>
+
+        <div class="col-md-7">
+            <h1 class="display-5 fw-bold">108</h1>
+            <h3 class="text-muted mb-4">Juan Román Riquelme</h3>
+            
+            <p class="lead">
+                Un recorrido por la carrera y los pensamientos del máximo ídolo de Boca Juniors. 
+                Este libro analiza su visión del fútbol, sus jugadas memorables y su legado 
+                en la historia del club.
+            </p>
+
+            <div class="my-4">
+                <span class="h2 text-primary fw-bold">$ 25.500</span>
+            </div>
+
+            <div class="d-grid d-md-flex gap-3">
+                <button class="btn btn-success btn-lg px-5">Comprar</button>
+                <a href="catalogo.html" class="btn btn-outline-secondary btn-lg">
+                    Volver al catálogo
+                </a>
+            </div>
+        </div>
     </div>
+</main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/data.js"></script>
