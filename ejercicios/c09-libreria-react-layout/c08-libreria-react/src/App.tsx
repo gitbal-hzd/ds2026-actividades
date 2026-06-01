@@ -1,13 +1,10 @@
-import { NavigationBar } from './components/Layout/NavigationBar';
-import { MainFooter } from './components/Layout/MainFooter';
+import { Layout } from './components/Layout/Layout';
 import { Home } from './pages/Home';
 
 export default function App() {
   return (
-    <div className="min-vh-100 d-flex flex-column bg-light">
-      <NavigationBar />
+    <Layout>
       <Home />
-      <MainFooter />
-    </div>
+    </Layout>
   );
 }
