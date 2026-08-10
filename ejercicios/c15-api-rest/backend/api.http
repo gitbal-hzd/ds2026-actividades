@@ -1,0 +1,97 @@
+@baseUrl = http://localhost:3000/api
+
+### ================= LIBROS =================
+
+### Listar todos los libros
+GET {{baseUrl}}/libros
+
+### Listar libros disponibles
+GET {{baseUrl}}/libros?disponible=true
+
+### Obtener un libro por ID
+GET {{baseUrl}}/libros/1
+
+### Obtener un libro que no existe (404)
+GET {{baseUrl}}/libros/999
+
+### Crear un libro
+POST {{baseUrl}}/libros
+Content-Type: application/json
+
+{
+  "titulo": "Rayuela",
+  "autor": "Julio Cortázar",
+  "precio": 7000,
+  "imagen": "/images.jpg",
+  "disponible": true
+}
+
+### Actualizar un libro (PUT)
+PUT {{baseUrl}}/libros/1
+Content-Type: application/json
+
+{
+  "titulo": "Boca del MUNDO (Edición Limitada)",
+  "autor": "Leandro Paredes",
+  "precio": 19500,
+  "imagen": "/8cW84tUUU_1200x0__1.jpg",
+  "disponible": true
+}
+
+### Actualizar un libro que no existe (404)
+PUT {{baseUrl}}/libros/999
+Content-Type: application/json
+
+{
+  "titulo": "Inexistente"
+}
+
+### Borrar un libro
+DELETE {{baseUrl}}/libros/1
+
+### Borrar un libro que no existe (o ya borrado) (404)
+DELETE {{baseUrl}}/libros/1
+
+
+### ================= AUTORES =================
+
+### Listar todos los autores
+GET {{baseUrl}}/autores
+
+### Obtener un autor por ID
+GET {{baseUrl}}/autores/1
+
+### Obtener un autor que no existe (404)
+GET {{baseUrl}}/autores/999
+
+### Crear un autor
+POST {{baseUrl}}/autores
+Content-Type: application/json
+
+{
+  "nombre": "Jorge Luis Borges",
+  "nacionalidad": "Argentina"
+}
+
+### Actualizar un autor (PUT)
+PUT {{baseUrl}}/autores/1
+Content-Type: application/json
+
+{
+  "nombre": "Leandro Paredes (Campeón)",
+  "nacionalidad": "Argentina"
+}
+
+### Actualizar un autor que no existe (404)
+PUT {{baseUrl}}/autores/999
+Content-Type: application/json
+
+{
+  "nombre": "Nadie"
+}
+
+### Borrar un autor
+DELETE {{baseUrl}}/autores/1
+
+### Borrar un autor que no existe (404)
+DELETE {{baseUrl}}/autores/1
