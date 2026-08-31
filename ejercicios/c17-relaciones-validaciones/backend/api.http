@@ -1,0 +1,102 @@
+@baseUrl = http://localhost:3000/api
+
+### ================= LIBROS =================
+
+### Listar todos los libros
+GET {{baseUrl}}/libros
+
+### Listar libros disponibles
+GET {{baseUrl}}/libros?disponible=true
+
+### Obtener un libro por ID
+GET {{baseUrl}}/libros/1
+
+### 400 - id inválido
+GET {{baseUrl}}/libros/abc
+
+### 404 - Obtener un libro que no existe
+GET {{baseUrl}}/libros/9999
+
+### Crear un libro
+POST {{baseUrl}}/libros
+Content-Type: application/json
+
+{
+  "titulo": "Rayuela",
+  "autorId": 1,
+  "precio": 7000,
+  "imagen": "/images.jpg",
+  "disponible": true
+}
+
+### 400 - sin título y con precio negativo
+POST {{baseUrl}}/libros
+Content-Type: application/json
+
+{
+  "precio": -5000,
+  "imagen": "https://...",
+  "autorId": 1
+}
+
+### 400 - el autor no existe (P2003 atrapado o 400 si lo validamos, la BD devuelve 409 si es P2003 pero depende de Prisma. P2003 da 409 por el errorHandler)
+POST {{baseUrl}}/libros
+Content-Type: application/json
+
+{
+  "titulo": "Huérfano",
+  "precio": 5000,
+  "imagen": "https://...",
+  "autorId": 9999
+}
+
+### Actualizar un libro (PUT)
+PUT {{baseUrl}}/libros/1
+Content-Type: application/json
+
+{
+  "precio": 19500
+}
+
+### 404 - Actualizar algo que no existe
+PUT {{baseUrl}}/libros/9999
+Content-Type: application/json
+
+{
+  "titulo": "Inexistente"
+}
+
+### Borrar un libro
+DELETE {{baseUrl}}/libros/1
+
+### ================= AUTORES =================
+
+### Listar todos los autores
+GET {{baseUrl}}/autores
+
+### Obtener un autor por ID
+GET {{baseUrl}}/autores/1
+
+### Crear un autor
+POST {{baseUrl}}/autores
+Content-Type: application/json
+
+{
+  "nombre": "Jorge Luis Borges",
+  "nacionalidad": "Argentina"
+}
+
+### 409 - autor duplicado
+POST {{baseUrl}}/autores
+Content-Type: application/json
+
+{
+  "nombre": "Leandro Paredes",
+  "nacionalidad": "Argentina"
+}
+
+### 409 - borrar un autor con libros (onDelete: Restrict por default)
+DELETE {{baseUrl}}/autores/1
+
+### Borrar un autor que no existe (404)
+DELETE {{baseUrl}}/autores/9999
