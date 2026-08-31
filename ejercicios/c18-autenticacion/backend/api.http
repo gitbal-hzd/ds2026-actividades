@@ -1,0 +1,128 @@
+@baseUrl = http://localhost:3000/api
+
+### ================= CASOS C18 =================
+
+### 1) POST /auth/registro -> 201 sin passwordHash en la respuesta
+POST {{baseUrl}}/auth/registro
+Content-Type: application/json
+
+{
+  "nombre": "Ana",
+  "email": "ana@libreria.test",
+  "password": "Libreria2026"
+}
+
+### 2) POST /auth/registro mismo email -> 409
+POST {{baseUrl}}/auth/registro
+Content-Type: application/json
+
+{
+  "nombre": "Otra Ana",
+  "email": "ana@libreria.test",
+  "password": "OtraPassword123"
+}
+
+### 3) POST /auth/registro password "corta" -> 400 con los 3 errores del password
+POST {{baseUrl}}/auth/registro
+Content-Type: application/json
+
+{
+  "nombre": "Carlos",
+  "email": "carlos@libreria.test",
+  "password": "corta"
+}
+
+### 4) POST /auth/login mail que no existe -> 401 "Credenciales inválidas"
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "noexiste@libreria.test",
+  "password": "Password123"
+}
+
+### 5) POST /auth/login password mal -> 401 el mismo mensaje
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@libreria.test",
+  "password": "MalPassword123"
+}
+
+### 6) POST /auth/login correcto -> 200 con token
+# @name loginAdmin
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@libreria.test",
+  "password": "Admin1234"
+}
+
+### 6.b) Login de CLIENTE para probar autorizacion
+# @name loginCliente
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "cliente@libreria.test",
+  "password": "Cliente1234"
+}
+
+### Guardamos los tokens de las respuestas anteriores
+@tokenAdmin = {{loginAdmin.response.body.token}}
+@tokenCliente = {{loginCliente.response.body.token}}
+
+
+### 7) GET /auth/yo sin header -> 401
+GET {{baseUrl}}/auth/yo
+
+
+### 8) GET /auth/yo CLIENTE -> 200
+GET {{baseUrl}}/auth/yo
+Authorization: Bearer {{tokenCliente}}
+
+
+### 9) POST /api/libros sin header -> 401
+POST {{baseUrl}}/libros
+Content-Type: application/json
+
+{
+  "titulo": "Nuevo Libro sin token",
+  "autorId": 1,
+  "precio": 5000,
+  "imagen": "/images.jpg",
+  "disponible": true
+}
+
+### 10) POST /api/libros CLIENTE -> 403
+POST {{baseUrl}}/libros
+Content-Type: application/json
+Authorization: Bearer {{tokenCliente}}
+
+{
+  "titulo": "Nuevo Libro de cliente",
+  "autorId": 1,
+  "precio": 5000,
+  "imagen": "/images.jpg",
+  "disponible": true
+}
+
+
+### 11) POST /api/libros ADMIN -> 201
+POST {{baseUrl}}/libros
+Content-Type: application/json
+Authorization: Bearer {{tokenAdmin}}
+
+{
+  "titulo": "Nuevo Libro Oficial",
+  "autorId": 1,
+  "precio": 5000,
+  "imagen": "/images.jpg",
+  "disponible": true
+}
+
+
+### 12) GET /api/libros sin header -> 200 es público
+GET {{baseUrl}}/libros
