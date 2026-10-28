@@ -61,7 +61,7 @@ export function Login() {
           <Form.Control
             type="email"
             name="email"
-            placeholder="Ej: admin@libreria.test"
+            placeholder="Ej: usuario@correo.com"
             value={form.email}
             onChange={handleChange}
             isInvalid={!!errores.email}
@@ -77,7 +77,7 @@ export function Login() {
           <Form.Control
             type="password"
             name="password"
-            placeholder="Ej: Admin1234"
+            placeholder="Ingresá tu contraseña"
             value={form.password}
             onChange={handleChange}
             isInvalid={!!errores.password}
