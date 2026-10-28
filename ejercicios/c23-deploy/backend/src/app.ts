@@ -12,6 +12,18 @@ app.use(cors({
 }));
 app.use(express.json());
 
+app.get("/", (_req, res) => {
+  res.json({
+    estado: "OK",
+    mensaje: "API de Librería activa",
+    endpoints: {
+      libros: "/api/libros",
+      autores: "/api/autores",
+      auth: "/api/auth/login"
+    }
+  });
+});
+
 app.use("/api/auth", authRoutes);
 app.use("/api/libros", libroRoutes);
 app.use("/api/autores", autorRoutes);
