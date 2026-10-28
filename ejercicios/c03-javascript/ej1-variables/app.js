@@ -10,7 +10,9 @@ console.log(`Me llamo ${nombre}, tengo ${edad} años y curso ${materia}`);
 let contador = 0;
 
 // 4. Sumo 1 tres veces
-contador++;            
+contador++;
+contador++;
+contador++;
 
 // 5. Mostramos el valor final por consola
 console.log("El valor final del contador es:", contador);
