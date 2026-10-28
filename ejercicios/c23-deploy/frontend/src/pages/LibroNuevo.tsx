@@ -11,6 +11,7 @@ export function LibroNuevo() {
     titulo: '',
     autorId: '',
     precio: '',
+    imagen: '',
     disponible: true,
   });
 
@@ -42,9 +43,13 @@ export function LibroNuevo() {
     }
 
     try {
+      const payload = {
+        ...resultado.data,
+        imagen: resultado.data.imagen?.trim() || '/images.jpg',
+      };
       await apiFetch('/libros', {
         method: 'POST',
-        body: JSON.stringify(resultado.data),
+        body: JSON.stringify(payload),
       });
       navigate('/catalogo');
     } catch (err) {
@@ -104,6 +109,18 @@ export function LibroNuevo() {
           <Form.Control.Feedback type="invalid">
             {errores.precio}
           </Form.Control.Feedback>
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label className="text-white">URL de la Imagen (opcional)</Form.Label>
+          <Form.Control
+            type="text"
+            name="imagen"
+            value={form.imagen}
+            placeholder="/images.jpg"
+            onChange={handleChange}
+            className="bg-transparent text-white"
+          />
         </Form.Group>
 
         <Form.Check
