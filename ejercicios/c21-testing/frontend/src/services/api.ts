@@ -2,9 +2,11 @@ import { obtenerToken } from './sesion';
 
 export class ApiError extends Error {
   status: number;
-  constructor(status: number, message: string) {
+  detalles?: any;
+  constructor(status: number, message: string, detalles?: any) {
     super(message);
     this.status = status;
+    this.detalles = detalles;
   }
 }
 
@@ -27,7 +29,10 @@ export async function apiFetch<T>(ruta: string, opciones: RequestInit = {}): Pro
 
   const cuerpo = await res.json().catch(() => null);
   if (!res.ok) {
-    throw new ApiError(res.status, cuerpo?.error ?? `Error ${res.status}`);
+    const errorMsg = cuerpo?.detalles?.length
+      ? `${cuerpo.error}: ${cuerpo.detalles.map((d: any) => `${d.campo} (${d.mensaje})`).join(', ')}`
+      : cuerpo?.error ?? `Error ${res.status}`;
+    throw new ApiError(res.status, errorMsg, cuerpo?.detalles);
   }
   return cuerpo as T;
 }

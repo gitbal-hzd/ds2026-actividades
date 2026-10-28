@@ -3,7 +3,7 @@ import { z } from "zod";
 export const libroCreateSchema = z.object({
   titulo: z.string().trim().min(1, "El título es obligatorio").max(200),
   precio: z.number().int().positive("El precio debe ser mayor a 0"),
-  imagen: z.string().min(1, "La imagen es obligatoria"),
+  imagen: z.string().transform(v => v.trim() || "/images.jpg").default("/images.jpg"),
   disponible: z.boolean().optional(),
   autorId: z.number().int().positive("El autor es obligatorio"),
   categorias: z.array(z.string()).optional() // Asumimos categorias como un array de strings si aplica, omitimos validación profunda por ahora

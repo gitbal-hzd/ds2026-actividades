@@ -71,6 +71,7 @@ export function LibroNuevo() {
           <Form.Label className="text-white">Título</Form.Label>
           <Form.Control
             name="titulo"
+            placeholder="Ej: El Eternauta"
             value={form.titulo}
             onChange={handleChange}
             isInvalid={!!errores.titulo}
@@ -86,6 +87,7 @@ export function LibroNuevo() {
           <Form.Control
             type="number"
             name="autorId"
+            placeholder="Ej: 1 (1: Paredes, 2: Riquelme, 3: Palermo, 4: Messi, 5: Maradona)"
             value={form.autorId}
             onChange={handleChange}
             isInvalid={!!errores.autorId}
@@ -101,6 +103,7 @@ export function LibroNuevo() {
           <Form.Control
             type="number"
             name="precio"
+            placeholder="Ej: 18500"
             value={form.precio}
             onChange={handleChange}
             isInvalid={!!errores.precio}
@@ -117,7 +120,7 @@ export function LibroNuevo() {
             type="text"
             name="imagen"
             value={form.imagen}
-            placeholder="/images.jpg"
+            placeholder="Ej: /images.jpg (si lo dejás vacío usa una por defecto)"
             onChange={handleChange}
             className="bg-transparent text-white"
           />

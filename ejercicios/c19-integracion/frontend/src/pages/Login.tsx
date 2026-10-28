@@ -1,14 +1,13 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Form, Button, Container, Alert } from 'react-bootstrap';
 import { loginSchema } from '../schemas/loginSchema';
-import { apiFetch } from '../services/api';
-import { guardarToken } from '../services/sesion';
-
-type Sesion = { token: string };
+import { useAuth } from '../context/AuthContext';
 
 export function Login() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { login } = useAuth();
 
   const [form, setForm] = useState({
     email: '',
@@ -42,13 +41,8 @@ export function Login() {
 
     try {
       setLoading(true);
-      const sesion = await apiFetch<Sesion>('/auth/login', {
-        method: 'POST',
-        body: JSON.stringify(resultado.data),
-      });
-      
-      guardarToken(sesion.token);
-      navigate('/catalogo');
+      await login(resultado.data);
+      navigate(location.state?.desde ?? '/catalogo', { replace: true });
     } catch (err) {
       setErrorGlobal(err instanceof Error ? err.message : 'Error desconocido');
     } finally {
@@ -67,6 +61,7 @@ export function Login() {
           <Form.Control
             type="email"
             name="email"
+            placeholder="Ej: admin@libreria.test"
             value={form.email}
             onChange={handleChange}
             isInvalid={!!errores.email}
@@ -82,6 +77,7 @@ export function Login() {
           <Form.Control
             type="password"
             name="password"
+            placeholder="Ej: Admin1234"
             value={form.password}
             onChange={handleChange}
             isInvalid={!!errores.password}
